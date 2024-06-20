@@ -13,4 +13,8 @@ const randomIndex = Math.floor(Math.random() * MOCK_USERS.length);
 })
 export class UserComponent {
   selectedUser = MOCK_USERS[randomIndex];
+
+  get imagePath() {
+    return `assets/users/${this.selectedUser.avatar}`;
+  }
 }
