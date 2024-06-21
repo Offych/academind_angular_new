@@ -3,18 +3,25 @@ import { HeaderComponent } from './header/header.component';
 import { UserComponent } from './user/user.component';
 
 import { MOCK_USERS } from './data/users';
+import { TasksComponent } from './tasks/tasks.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  imports: [HeaderComponent, UserComponent],
+  imports: [HeaderComponent, UserComponent, TasksComponent],
 })
 export class AppComponent {
   users = MOCK_USERS;
+  selectedUserId = '';
+
+  get selectedUser() {
+    return this.users.find((user) => user.id === this.selectedUserId)!;
+  }
 
   onSelectUser(id: string) {
-    console.log(id);
+    //console.log(id);
+    this.selectedUserId = id;
   }
 }
