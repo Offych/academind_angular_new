@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal, computed } from '@angular/core';
 
 import { MOCK_USERS } from '../data/users';
 
@@ -12,13 +12,15 @@ const randomIndex = Math.floor(Math.random() * MOCK_USERS.length);
   styleUrl: './user.component.css',
 })
 export class UserComponent {
-  selectedUser = MOCK_USERS[randomIndex];
+  selectedUser = signal(MOCK_USERS[randomIndex]);
+  imagePath = computed(() => `assets/users/${this.selectedUser().avatar}`);
 
-  get imagePath() {
+  /*   get imagePath() {
     return `assets/users/${this.selectedUser.avatar}`;
-  }
+  } */
 
   onSelectUser() {
-    console.log('Clicked!');
+    const randomIndex = Math.floor(Math.random() * MOCK_USERS.length);
+    this.selectedUser.set(MOCK_USERS[randomIndex]);
   }
 }
