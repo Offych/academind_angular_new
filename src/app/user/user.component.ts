@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, computed, input } from '@angular/core';
 
 //import { MOCK_USERS } from '../data/users';
 
@@ -12,12 +12,16 @@ import { Component, Input } from '@angular/core';
   styleUrl: './user.component.css',
 })
 export class UserComponent {
-  @Input({ required: true }) avatar!: string;
-  @Input({ required: true }) name!: string;
+  /*  @Input({ required: true }) avatar!: string;
+  @Input({ required: true }) name!: string; */
 
-  get imagePath() {
+  avatar = input.required<string>();
+  name = input.required<string>();
+  imagePath = computed(() => `assets/users/${this.avatar()}`);
+
+  /*   get imagePath() {
     return `assets/users/${this.avatar}`;
-  }
+  } */
 
   //selectedUser = signal(MOCK_USERS[randomIndex]);
   //imagePath = computed(() => `assets/users/${this.selectedUser().avatar}`);
