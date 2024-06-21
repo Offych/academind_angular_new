@@ -13,4 +13,8 @@ import { MOCK_USERS } from './data/users';
 })
 export class AppComponent {
   users = MOCK_USERS;
+
+  onSelectUser(id: string) {
+    console.log(id);
+  }
 }

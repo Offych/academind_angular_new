@@ -1,4 +1,11 @@
-import { Component, Input, computed, input } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  computed,
+  input,
+} from '@angular/core';
 
 //import { MOCK_USERS } from '../data/users';
 
@@ -12,16 +19,18 @@ import { Component, Input, computed, input } from '@angular/core';
   styleUrl: './user.component.css',
 })
 export class UserComponent {
-  /*  @Input({ required: true }) avatar!: string;
-  @Input({ required: true }) name!: string; */
+  @Input({ required: true }) id!: string;
+  @Input({ required: true }) avatar!: string;
+  @Input({ required: true }) name!: string;
+  @Output() select = new EventEmitter();
 
-  avatar = input.required<string>();
-  name = input.required<string>();
-  imagePath = computed(() => `assets/users/${this.avatar()}`);
+  //avatar = input.required<string>();
+  //name = input.required<string>();
+  //imagePath = computed(() => `assets/users/${this.avatar()}`);
 
-  /*   get imagePath() {
+  get imagePath() {
     return `assets/users/${this.avatar}`;
-  } */
+  }
 
   //selectedUser = signal(MOCK_USERS[randomIndex]);
   //imagePath = computed(() => `assets/users/${this.selectedUser().avatar}`);
@@ -33,5 +42,7 @@ export class UserComponent {
   onSelectUser() {
     /* const randomIndex = Math.floor(Math.random() * MOCK_USERS.length);
     this.selectedUser.set(MOCK_USERS[randomIndex]); */
+
+    this.select.emit(this.id);
   }
 }
