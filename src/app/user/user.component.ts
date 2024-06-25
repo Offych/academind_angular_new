@@ -7,6 +7,7 @@ import {
   input,
   output,
 } from '@angular/core';
+import { User } from './user.model';
 
 //import { MOCK_USERS } from '../data/users';
 
@@ -16,12 +17,6 @@ import {
   name: string;
   avatar: string;
 }; */
-
-interface User {
-  id: string;
-  name: string;
-  avatar: string;
-}
 
 @Component({
   selector: 'app-user',
