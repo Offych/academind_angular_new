@@ -1,5 +1,6 @@
 import { Component, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { type NewTaskData } from '../task/task.model';
 
 @Component({
   selector: 'app-new-task',
@@ -17,8 +18,15 @@ export class NewTaskComponent {
   enteredDate = signal(''); */
 
   cancel = output<void>();
+  add = output<NewTaskData>();
 
-  onAddNewTask() {}
+  onSubmit() {
+    this.add.emit({
+      title: this.enteredTitle,
+      summary: this.enteredSummary,
+      date: this.enteredDate,
+    });
+  }
 
   onCancel() {
     this.cancel.emit();
