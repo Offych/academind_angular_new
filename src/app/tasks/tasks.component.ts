@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { TaskComponent } from './task/task.component';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { type NewTaskData } from './task/task.model';
+import { TasksService } from '../service/tasks.service';
 
 @Component({
   selector: 'app-tasks',
@@ -15,22 +16,23 @@ export class TasksComponent {
   @Input({ required: true }) userId!: string;
   isAddingTask = false;
 
+  taskService = inject(TasksService);
+
   get selectedUserTask() {
-    return;
+    return this.taskService.getUserTasks(this.userId);
   }
 
   onCompleteTask(id: string) {}
 
   onStartAddTask() {
     this.isAddingTask = true;
-    console.log('add task handler');
   }
 
-  onCancelAddTask() {
+  onCloseAddTask() {
     this.isAddingTask = false;
   }
 
-  onAddTask(taskData: NewTaskData) {
+  /*   onAddTask(taskData: NewTaskData) {
     this.isAddingTask = false;
-  }
+  } */
 }
