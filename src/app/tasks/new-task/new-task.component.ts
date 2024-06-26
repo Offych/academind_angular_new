@@ -1,27 +1,24 @@
-import { Component, EventEmitter, Output, inject, output } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, output, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-new-task',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './new-task.component.html',
   styleUrl: './new-task.component.css',
 })
 export class NewTaskComponent {
-  fb = inject(FormBuilder);
+  enteredTitle = '';
+  enteredSummary = '';
+  enteredDate = '';
+  /*   enteredTitle = signal('');
+  enteredSummary = signal('');
+  enteredDate = signal(''); */
 
   cancel = output<void>();
 
-  addTaskForm = this.fb.group({
-    title: [''],
-    summary: [''],
-    dueDate: [''],
-  });
-
-  onAddNewTask() {
-    console.log('add new task handler', this.addTaskForm.value);
-  }
+  onAddNewTask() {}
 
   onCancel() {
     this.cancel.emit();
