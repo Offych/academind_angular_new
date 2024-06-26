@@ -1,7 +1,8 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, inject, Input } from '@angular/core';
 import { Task } from './task.model';
 import { CardComponent } from '../../shared/card/card.component';
 import { DatePipe } from '@angular/common';
+import { TasksService } from '../../service/tasks.service';
 
 @Component({
   selector: 'app-task',
@@ -11,10 +12,12 @@ import { DatePipe } from '@angular/common';
   imports: [CardComponent, DatePipe],
 })
 export class TaskComponent {
-  task = input.required<Task>();
-  complete = output<string>();
+  @Input({ required: true }) task!: Task;
+  //task = input.required<Task>();
+  //complete = output<string>();
+  private taskService = inject(TasksService);
 
   onCompleteTask() {
-    this.complete.emit(this.task().id);
+    this.taskService.removeTask(this.task.id);
   }
 }
