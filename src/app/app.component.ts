@@ -4,24 +4,13 @@ import { UserComponent } from './user/user.component';
 
 import { MOCK_USERS } from './data/users';
 import { TasksComponent } from './tasks/tasks.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  imports: [HeaderComponent, UserComponent, TasksComponent],
+  imports: [HeaderComponent, UserComponent, TasksComponent, RouterModule],
 })
-export class AppComponent {
-  users = MOCK_USERS;
-  selectedUserId?: string;
-
-  get selectedUser() {
-    return this.users.find((user) => user.id === this.selectedUserId);
-  }
-
-  onSelectUser(id: string) {
-    //console.log(id);
-    this.selectedUserId = id;
-  }
-}
+export class AppComponent {}
