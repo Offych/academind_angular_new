@@ -1,2 +1,3 @@
 <app-invest-header />
-<app-invest-user-input />
+<app-invest-user-input (calculate)="onCalculateInvestmentResults($event)" />
+<app-investment-result [results]="resultsData" />
